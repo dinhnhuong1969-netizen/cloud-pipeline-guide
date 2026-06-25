@@ -115,8 +115,8 @@ optional `claude-review.yml`, `canary.yml`).
 ### The env-name contract
 *Spans the Supabase client + `src/middleware.ts`, `.env.example`, the Vercel
 **Production** variable names, and the prefix in Supabase → Project → Settings →
-Integrations → Vercel → Manage · set in steps 4, 5.7, and 6.* The textbook connected
-line: all four use the `PUBLIC_` prefix (step 5.7 configures the integration to inject
+Integrations → Vercel → Manage · set in steps 4 and 6.* The textbook connected
+line: all four use the `PUBLIC_` prefix (step 6.7 configures the integration to inject
 `PUBLIC_` into previews, matching production), so a change to any one moves all of them
 or none.
 

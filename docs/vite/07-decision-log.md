@@ -39,7 +39,7 @@ needs annoying setup for marginal gain, leave it out.**
   ruleset rides as committed JSON (one-click import) and the dashboards are redone
   per project.
 - **Env-var seam:** the client reads only `VITE_` names; `envPrefix: ['VITE_']`
-  exposes them to the browser; step 5.7 sets the Supabase→Vercel integration's
+  exposes them to the browser; step 6.7 sets the Supabase→Vercel integration's
   per-connection prefix to `VITE_` so previews receive the same names as
   production — no fallback needed. Only **Production**-scoped secrets are deleted
   from Vercel by hand (the integration's branch-scoped preview copies clean
@@ -168,7 +168,7 @@ needs annoying setup for marginal gain, leave it out.**
   Actions jobs and the import is offered as the step 9 upgrade. The Supabase→Vercel
   integration's **per-connection prefix is configurable** (Supabase → Project →
   Settings → Integrations → Vercel → Manage → Customize prefix — field-verified
-  Jun 2026; supabase/supabase PR #28058 merged Jul 2024); step 5.7 sets it to
+  Jun 2026; supabase/supabase PR #28058 merged Jul 2024); step 6.7 sets it to
   `VITE_` so previews inject the same names as production, retiring the
   `NEXT_PUBLIC_` fallback chain. Env sync fires at PR-open **and** on push/branch
   creation — field-verified Jun 2026, retiring the close/reopen workaround. The

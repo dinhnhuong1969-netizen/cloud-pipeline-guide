@@ -43,7 +43,7 @@ throwaway `claude/…` branch that becomes a PR.
 **The env-var names are a contract.** The browser only sees variables carrying a
 public prefix **Vite** exposes (`envPrefix`). This stack exposes one: `VITE_` —
 the values you set by hand in Vercel (production) and the values the Supabase
-integration injects into previews share this prefix (step 5.7 sets it). The
+integration injects into previews share this prefix (step 6.7 sets it). The
 contract lives in `vite.config.ts` (`envPrefix: ['VITE_']`),
 `src/lib/supabaseClient.ts`, `.env.example`, and the Vercel production variable
 names — these four all use `VITE_`, so a change to any one moves all of them in

@@ -3,7 +3,7 @@
 **Status:** PASS (CONCERNs raised, resolved before commit)
 
 **Scope:** Prefix retirement + close/reopen retirement across all 4 framework copies;
-new step 5.7 per framework; workaround rows removed; MEMORY.md updated.
+new step 6.7 in Vite/Astro/SvelteKit; workaround rows removed; MEMORY.md updated.
 
 **Initial CONCERNs:**
 1. `docs/vite/02-set-it-up.md:304-306` — step 6 ✗ had "**push any commit**" (bolded)
@@ -17,7 +17,7 @@ new step 5.7 per framework; workaround rows removed; MEMORY.md updated.
 **Post-fix checks:**
 - Step 5.7 framework-specific prefixes: Vite → VITE_, Astro/SvelteKit → PUBLIC_,
   Next.js → absent (correct, native prefix already matches) — PASS.
-- Step 5 note: Vite/Astro/SvelteKit say "redo steps 5.6–5.7 and steps 6.5–6.6";
+- Step 5 note: Vite/Astro/SvelteKit say "redo step 5.6 and steps 6.5–6.7";
   Next says "redo step 5.6 and steps 6.5–6.6" — correct per-framework delta — PASS.
 - Step 6 ✓: all 4 copies say "created at PR-open or on push" — PASS.
 - Step 6 ✗: all 4 copies now byte-identical — PASS.

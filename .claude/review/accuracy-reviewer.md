@@ -3,7 +3,7 @@
 **Status:** PASS (CONCERN raised, resolved before commit)
 
 **Scope:** Prefix retirement + close/reopen retirement across all 4 framework copies;
-new step 5.7; workaround rows removed; MEMORY.md updated.
+new step 6.7 (moved from initially-drafted step 5.7); workaround rows removed; MEMORY.md updated.
 
 **Initial CONCERN:**
 `docs/vite/02-set-it-up.md:300` (step 6 ✓) — said "created at PR-open" without

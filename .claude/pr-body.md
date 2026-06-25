@@ -1,4 +1,4 @@
-# Retire prefix bridge + close/reopen workarounds; add step 5.7 (all 4 frameworks)
+# Retire prefix bridge + close/reopen workarounds; add step 6.7 (all frameworks)
 
 The Supabase→Vercel integration's per-connection prefix is configurable (field-verified Jun 2026;
 supabase/supabase PR #28058 merged Jul 2024). Setting it to each framework's native prefix means
@@ -8,9 +8,10 @@ so the "close and reopen the PR" workaround is also retired.
 
 ## What changed
 
-- **New step 5.7** in all 4 `docs/<fw>/02-set-it-up.md` copies: sets the integration's
-  per-connection prefix — Vite → `VITE_`, Astro → `PUBLIC_`, SvelteKit → `PUBLIC_`,
-  Next.js → no change needed (default `NEXT_PUBLIC_` already matches).
+- **New step 6.7** in Vite, Astro, SvelteKit `docs/<fw>/02-set-it-up.md`: sets the
+  integration's per-connection prefix after step 6.5 installs the marketplace app
+  (the Supabase→Vercel connection only exists from that point) — Vite → `VITE_`,
+  Astro/SvelteKit → `PUBLIC_`; Next.js needs no change (default `NEXT_PUBLIC_` matches).
 - **Prefix bridge retired** in Vite, Astro, SvelteKit: removed the cross-prefix fallback
   chains (`VITE_ ?? NEXT_PUBLIC_`, `PUBLIC_ ?? NEXT_PUBLIC_`) from scaffold prompts, unit
   tests, architecture lines, self-checks, memory examples, audit prompts, and
@@ -21,8 +22,8 @@ so the "close and reopen the PR" workaround is also retired.
 - **`docs/<fw>/07-decision-log.md`** (all 4 copies): env-var seam bullet corrected,
   verified-pass paragraph updated with field-verified Jun 2026 stamps for both retirements.
 - **`docs/<fw>/01-the-model.md`** (all 4 copies): env-contract paragraph rewritten to
-  name only the framework's native prefix and note step 5.7.
-- **`MEMORY.md`**: per-framework env wiring section rewritten to document step 5.7, the
+  name only the framework's native prefix and note step 6.7.
+- **`MEMORY.md`**: per-framework env wiring section rewritten to document step 6.7, the
   native prefix per framework, and both retirements with canonical stamps.
 - **Three earlier arrow-rule fixes** (constitution block) included from the prior scope.
 - **`.claude/review/`**: three reviewer verdicts refreshed for this PR.

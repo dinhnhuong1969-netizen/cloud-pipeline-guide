@@ -116,8 +116,8 @@ optional `claude-review.yml`, `canary.yml`).
 *Spans `vite.config.ts` (`envPrefix`), `src/lib/supabaseClient.ts`,
 `.env.example`, the Vercel **Production** variable names, and the prefix in
 Supabase → Project → Settings → Integrations → Vercel → Manage · set in steps 1,
-4, 5.7, and 6.* The textbook connected line: all five use the `VITE_` prefix
-(step 5.7 configures the integration to inject `VITE_` into previews, matching
+4, and 6.* The textbook connected line: all five use the `VITE_` prefix
+(step 6.7 configures the integration to inject `VITE_` into previews, matching
 production), so a change to any one moves all of them or none.
 
 ```text

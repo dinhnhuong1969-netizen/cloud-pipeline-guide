@@ -40,7 +40,7 @@ needs annoying setup for marginal gain, leave it out.**
   per project.
 - **Env-var seam:** the browser never reads a Supabase prefix directly —
   `hooks.server.ts` reads `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
-  PUBLIC_SUPABASE_ANON_KEY` from `process.env`; step 5.7 sets the integration's
+  PUBLIC_SUPABASE_ANON_KEY` from `process.env`; step 6.7 sets the integration's
   per-connection prefix to `PUBLIC_` so previews inject the same names as production —
   no cross-prefix fallback needed; the root `+layout` load passes the values to the
   client. Only **Production**-scoped secrets are deleted from Vercel by hand (the
@@ -170,7 +170,7 @@ needs annoying setup for marginal gain, leave it out.**
   Actions jobs and the import is offered as the step 9 upgrade. The Supabase→Vercel
   integration's **per-connection prefix is configurable** (Supabase → Project →
   Settings → Integrations → Vercel → Manage → Customize prefix — field-verified
-  Jun 2026; supabase/supabase PR #28058 merged Jul 2024); step 5.7 sets it to
+  Jun 2026; supabase/supabase PR #28058 merged Jul 2024); step 6.7 sets it to
   `PUBLIC_` so previews inject the same names as production, retiring the
   `NEXT_PUBLIC_` fallback chain. Env sync fires at PR-open **and** on push/branch
   creation — field-verified Jun 2026, retiring the close/reopen workaround. The
@@ -229,7 +229,7 @@ needs annoying setup for marginal gain, leave it out.**
 - **SvelteKit copy — framework deltas (Verified Jun 2026, official docs).** This is the SvelteKit edition (`@sveltejs/adapter-vercel`). What differs from the Vite
   baseline, and why: the browser prefix is `PUBLIC_`; `hooks.server.ts` reads
   `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? PUBLIC_SUPABASE_ANON_KEY`
-  from `process.env` — step 5.7 sets the integration's prefix to `PUBLIC_` so previews
+  from `process.env` — step 6.7 sets the integration's prefix to `PUBLIC_` so previews
   inject the same names, no cross-prefix fallback needed — and passes the values to the
   browser through the root `+layout` load; the browser client is built from that load
   data, never from a client-exposed prefix. Supabase uses `@supabase/ssr` (server client

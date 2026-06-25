@@ -43,7 +43,7 @@ throwaway `claude/…` branch that becomes a PR.
 **The env-var names are a contract.** The browser only sees Supabase config the
 SERVER hands it: `hooks.server.ts` reads `PUBLIC_SUPABASE_URL` and
 `PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? PUBLIC_SUPABASE_ANON_KEY` from `process.env` and the
-root `+layout` load passes them to the client — step 5.7 sets the integration's prefix
+root `+layout` load passes them to the client — step 6.7 sets the integration's prefix
 so previews inject the same `PUBLIC_` names as production. The contract lives in
 `hooks.server.ts`, `src/routes/+layout.server.ts` / `+layout.ts`, `.env.example`, and
 the Vercel production variable names — these all use `PUBLIC_`, so a change to any one

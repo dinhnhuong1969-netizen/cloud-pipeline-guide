@@ -40,7 +40,7 @@ needs annoying setup for marginal gain, leave it out.**
   per project.
 - **Env-var seam:** Astro reaches Supabase on the server, so `src/middleware.ts` reads
   `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? PUBLIC_SUPABASE_ANON_KEY`
-  from `process.env`; step 5.7 sets the integration's per-connection prefix to `PUBLIC_`
+  from `process.env`; step 6.7 sets the integration's per-connection prefix to `PUBLIC_`
   so previews inject the same names as production — no cross-prefix fallback needed, no
   `vite.envPrefix` override (that has a known Astro breakage, issue #10406); a client
   island gets the public values passed from the server. Only **Production**-scoped
@@ -170,7 +170,7 @@ needs annoying setup for marginal gain, leave it out.**
   Actions jobs and the import is offered as the step 9 upgrade. The Supabase→Vercel
   integration's **per-connection prefix is configurable** (Supabase → Project →
   Settings → Integrations → Vercel → Manage → Customize prefix — field-verified
-  Jun 2026; supabase/supabase PR #28058 merged Jul 2024); step 5.7 sets it to
+  Jun 2026; supabase/supabase PR #28058 merged Jul 2024); step 6.7 sets it to
   `PUBLIC_` so previews inject the same names as production, retiring the
   `NEXT_PUBLIC_` fallback chain. Env sync fires at PR-open **and** on push/branch
   creation — field-verified Jun 2026, retiring the close/reopen workaround. The
@@ -230,7 +230,7 @@ needs annoying setup for marginal gain, leave it out.**
   Astro edition (SSR via `output: 'server'` + the `@astrojs/vercel` adapter). Supabase is
   reached on the SERVER: `src/middleware.ts` builds the `@supabase/ssr` server client from
   `context.cookies` and stores it on `context.locals`, reading `PUBLIC_SUPABASE_URL` and
-  `PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? PUBLIC_SUPABASE_ANON_KEY` from `process.env`; step 5.7
+  `PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? PUBLIC_SUPABASE_ANON_KEY` from `process.env`; step 6.7
   sets the integration's prefix to `PUBLIC_` so previews inject the same names — no
   cross-prefix fallback needed; a client island that needs Supabase gets the public URL + key
   passed from the server. **Why not `vite.envPrefix`:** custom `envPrefix` overrides have a

@@ -42,7 +42,7 @@ throwaway `claude/…` branch that becomes a PR.
 
 **The env-var names are a contract.** Astro reaches Supabase on the SERVER (its SSR
 middleware reads `process.env`), so it reads `PUBLIC_SUPABASE_URL` (and the key)
-directly — `PUBLIC_` is what you set by hand in Vercel (production), and step 5.7
+directly — `PUBLIC_` is what you set by hand in Vercel (production), and step 6.7
 sets the integration's prefix so previews inject the same `PUBLIC_`-named vars. A
 client island that needs Supabase gets the public URL + key passed down from the
 server. The contract lives in the Supabase client + `src/middleware.ts`,

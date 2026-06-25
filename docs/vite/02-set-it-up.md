@@ -109,7 +109,7 @@ You are the senior DevOps engineer and **orchestrator** of four tools as one sys
 - One responsibility per file, ~200 lines; edit before creating.
 - A startup failure renders its error as visible text in #root — a deployment never shows a blank page.
 - Components render UI; data access and validation live in `src/services/`.
-- Read Supabase config from `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY ?? VITE_SUPABASE_ANON_KEY`; throw if URL or key is missing. Never hardcode. The contract spans `vite.config.ts` (`envPrefix: ['VITE_']`), this client, `.env.example`, and the Vercel production variable names — all using `VITE_` (step 5.7 configures the integration to inject `VITE_`-named vars into previews, matching production); if the stack changes, move all of it in ONE PR.
+- Read Supabase config from `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY ?? VITE_SUPABASE_ANON_KEY`; throw if URL or key is missing. Never hardcode. The contract spans `vite.config.ts` (`envPrefix: ['VITE_']`), this client, `.env.example`, and the Vercel production variable names — all using `VITE_` (step 6.7 configures the integration to inject `VITE_`-named vars into previews, matching production); if the stack changes, move all of it in ONE PR.
 - Folders: `src/components` (UI) · `src/hooks` (logic) · `src/services` (data + validation) · `src/lib` (incl. supabaseClient) · `src/types` · `supabase/migrations` (one SQL file per change) · `supabase/config.toml` · `supabase/seed.sql`.
 - **Designing structure on request** (`/prototype`, or "set up the project structure"): build it from my description — create only the feature/domain folders the project needs (a CRM → `contacts`, `deals`, `reminders`; a game → `game/{loop,scenes,entities}`), and omit the rest. Every folder gets a real, used starter file — never empty or `.gitkeep` shells. Wire it to the baseline: types in `src/types`, one core migration with RLS per table, reads through `supabaseClient.ts`, routes + placeholder components with loading/empty/error states. Record the layout in `docs/ARCHITECTURE.md`. Keep it a skeleton, not finished features. One PR into `main` with the "For you" block.
 
@@ -139,7 +139,7 @@ You are the senior DevOps engineer and **orchestrator** of four tools as one sys
 
 ## Memory (three tiers, self-pruning)
 - `CLAUDE.md` is your **constitution — read-only**; flag rule gaps to me, never self-edit. Learning goes to memory only.
-- One fact per tier, routed by scope: repo `MEMORY.md` = whole-scene facts ("the integration injects VITE_-named vars into previews after step 5.7") · folder `CLAUDE.md` = local wiring ("services/payment.ts re-derives amounts server-side") · agent memory = that agent's own lessons ("flagged a missing index in PR #12; pattern: filtered column"). If a fact fits two tiers, choose the narrowest.
+- One fact per tier, routed by scope: repo `MEMORY.md` = whole-scene facts ("the integration injects VITE_-named vars into previews after step 6.7") · folder `CLAUDE.md` = local wiring ("services/payment.ts re-derives amounts server-side") · agent memory = that agent's own lessons ("flagged a missing index in PR #12; pattern: filtered column"). If a fact fits two tiers, choose the narrowest.
 - Start each task by reading memory, record each decision or root cause as you go, correct a lesson when its code is reverted, and prune to stay under ~200 lines.
 - When something works, the lesson rides the code PR; when it fails, open a memory-only PR for me to merge — never self-merge.
 
@@ -210,7 +210,7 @@ you merge; it never self-edits. To change a rule after setup, see
 
 ```text
 Scaffold a MINIMAL Vite + React + TypeScript app that builds green and is ready to connect to Supabase and Vercel — nothing project-specific. Create:
-- vite.config.ts with envPrefix: ['VITE_'] (step 5.7 sets the integration's per-connection prefix to VITE_, so previews receive the same names as production).
+- vite.config.ts with envPrefix: ['VITE_'] (step 6.7 sets the integration's per-connection prefix to VITE_, so previews receive the same names as production).
 - src/lib/supabaseClient.ts using createClient(VITE_SUPABASE_URL, VITE_SUPABASE_PUBLISHABLE_KEY ?? VITE_SUPABASE_ANON_KEY); throw if URL or key is missing. (Both production and previews use VITE_ names — no cross-prefix fallback needed.)
 - A minimal src/ that compiles and renders one page (main.tsx + App.tsx). No feature folders yet. main.tsx must import App dynamically; if startup throws (e.g. missing Supabase config), render the error message as visible text in #root — a deployment must never show a blank page.
 - vercel.json with {"rewrites":[{"source":"/(.*)","destination":"/index.html"}]} — a Vite SPA on Vercel otherwise 404s on hard reloads of deep links.
@@ -247,15 +247,11 @@ from the first minute).
    credentials. Off means every PR spins a preview database that bills Pro
    compute hours until it pauses on inactivity — that's the price of every
    preview working.
-7. In **Supabase → Project → Settings → Integrations → Vercel**, click **Manage**
-   on your connection and change **Prefix** from `NEXT_PUBLIC_` to `VITE_` →
-   **Save**.
-
 *Note:* one empty project becomes production *and* a fresh isolated preview
 database per PR; it must start empty because Branching replays your migrations
 onto it. "Working directory `.`" is the repo root (it holds `supabase/`). If you
-ever recreate the Supabase project or rename the repo, redo steps 5.6–5.7 and
-steps 6.5–6.6 — existing connections silently keep pointing at the old identity
+ever recreate the Supabase project or rename the repo, redo step 5.6 and
+steps 6.5–6.7 — existing connections silently keep pointing at the old identity
 and sync nothing, with no error shown anywhere.
 
 **✓** the GitHub Connections page shows your repo linked to the project with
@@ -279,7 +275,10 @@ wasn't empty — make a fresh one.
    it to this Vercel project and sign in to Supabase.
 6. In **Supabase → Organization → Integrations → Vercel**, open the connection
    and make sure your Supabase project is linked to this Vercel project.
-7. Back in Vercel's **Environment Variables**, delete any **Production**-scoped
+7. In **Supabase → Project → Settings → Integrations → Vercel**, click **Manage**
+   on your connection and change **Prefix** from `NEXT_PUBLIC_` to `VITE_` →
+   **Save**.
+8. Back in Vercel's **Environment Variables**, delete any **Production**-scoped
    variable whose name contains `SECRET`, `SERVICE_ROLE`, `JWT`, or `POSTGRES` —
    nothing in this stack uses them there. Leave the branch-scoped ones the
    integration creates per PR: they're that preview's own keys, the browser can't
@@ -289,7 +288,7 @@ wasn't empty — make a fresh one.
 *Note:* production values are scoped to **Production only** and carry the `VITE_`
 names you typed. Each PR's preview gets its **own** values from the integration
 when a PR opens or a commit is pushed, injected under the same `VITE_` names
-(step 5.7 set the prefix) — the client reads one set of names in all environments,
+(step 6.7 set the prefix) — the client reads one set of names in all environments,
 so nothing needs configuring on either dashboard. Two health signs on any open PR:
 its **Supabase Preview** check is green (not *skipped*), and about a minute after
 the first build the integration redeploys the preview by itself — that
