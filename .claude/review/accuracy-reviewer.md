@@ -2,27 +2,27 @@
 
 **Status:** PASS (CONCERN raised, resolved before commit)
 
-**Scope:** `MEMORY.md` — two new verified-stamp entries for Supabase→Vercel integration
-behavior; arrow-rule rewrites in `02-set-it-up.md` (no platform claims added or changed).
+**Scope:** Prefix retirement + close/reopen retirement across all 4 framework copies;
+new step 5.7; workaround rows removed; MEMORY.md updated.
 
 **Initial CONCERN:**
-1. "field-verified Jun 2026 (user Vercel dashboard)" — not a documentation source; the
-   guide's quality gate requires claims against "current official docs."
-2. "Vercel marketplace page Jun 2026" — a marketplace listing does not meet the
-   official-docs standard used elsewhere.
+`docs/vite/02-set-it-up.md:300` (step 6 ✓) — said "created at PR-open" without
+mentioning the push/branch-creation trigger, while the decision-log and ✗ both
+document that env sync fires at PR-open AND on push/branch creation. Other three copies
+already said "created at PR-open or on push."
 
-**Resolution:** Both stamps rewritten to the canonical format used by `06-keeping-it-current.md`'s
-workaround table (`*(field, Jun 2026; …)*` / `*(docs + field, Jun 2026; …)*`):
+**Resolution:** Vite step 6 ✓ updated to "created at PR-open or on push" — now
+consistent with the documented behavior and the other three copies.
 
-- PUBLISHABLE_KEY injection: stamped `*(field, Jun 2026)*` with explicit note that official
-  marketplace docs list only ANON_KEY — actual injection exceeds the documented list.
-  This is the correct level for a field-only observation.
-- Prefix configurability: stamped `*(docs + field, Jun 2026)*` sourcing supabase/supabase
-  PR #28058 (merged Jul 2024) and vercel.com/marketplace/supabase (Jun 2026) — both are
-  primary sources (merged OSS PR + official product page). Matches the workaround table's
-  own stamp for this entry.
-
-**Post-fix check:** stamps now match the guide's own `*(docs | field | docs + field, date)*`
-convention; no unsupported assertion remains — PASS.
+**Platform claims checked:**
+- "Supabase→Vercel integration's per-connection prefix is configurable" —
+  stamp: `*(docs + field, Jun 2026; supabase/supabase PR #28058 merged Jul 2024)*` — PASS.
+- "Env sync fires at PR-open AND on push/branch creation" —
+  stamp: `*(field, Jun 2026)*` — PASS.
+- "For Next.js the integration default NEXT_PUBLIC_ prefix is already correct — no
+  change needed" — stamp: `*(field, Jun 2026)*` — PASS.
+- Step 5.7 dashboard path "Supabase → Project → Settings → Integrations → Vercel →
+  Manage → Prefix → Save" — field-verified Jun 2026 per MEMORY.md:57-59 — PASS.
+- MEMORY.md per-framework wiring section updated with canonical stamps — PASS.
 
 **Verdict:** PASS.

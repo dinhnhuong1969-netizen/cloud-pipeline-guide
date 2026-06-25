@@ -294,13 +294,11 @@ the visible sign the sync ran.
 
 **✓** open one test PR; while it is open, **Vercel → Settings → Environment
 Variables** shows `NEXT_PUBLIC_SUPABASE_*` entries scoped to **Preview** with that
-branch's name (created at PR-open, deleted when the PR merges or closes — checking
+branch's name (created at PR-open or on push, deleted when the PR merges or closes — checking
 after a merge always shows nothing), and the preview page renders.
 
 **✗** a preview reads the wrong database, or shows the "missing Supabase config"
-text → fix the connection (step 6.6), then **close and reopen the PR** — env sync
-fires only at the PR-open event (not on pushes or branch creation); after
-syncing, the integration redeploys the preview itself.
+text → fix the connection (step 6.6), then push any commit to the PR branch — env sync fires on push and branch creation as well as PR-open; after syncing, the integration redeploys the preview itself.
 
 **↑ Upgrade — commercial / collaborators:** Vercel Hobby is **non-commercial**,
 and on a **private repo it refuses deployments from any commit author who isn't
@@ -571,7 +569,7 @@ Create .claude/skills/test/SKILL.md with YAML frontmatter (name: test; descripti
 **/verify — check a build:**
 
 ```text
-Create .claude/skills/verify/SKILL.md with YAML frontmatter (name: verify; description: "Walk the human through checking the current PR's preview. Use when a PR is ready for review or when asked to verify.") that, for the current PR: summarizes what changed, runs the three reviewers, confirms the preview is on its own branch DB by checking the PR's "Supabase Preview" check is green (not skipped), that /health returns ok, and that the preview renders the app rather than the "failed to start / missing Supabase config" text — if any fail, route me to step 6's ✗ remedy (fix the connection, then close and reopen the PR) — exercises the happy AND unhappy paths, and returns a plain-English what-to-click / what-should-happen / what-means-broken. Read-only. Open a PR into main.
+Create .claude/skills/verify/SKILL.md with YAML frontmatter (name: verify; description: "Walk the human through checking the current PR's preview. Use when a PR is ready for review or when asked to verify.") that, for the current PR: summarizes what changed, runs the three reviewers, confirms the preview is on its own branch DB by checking the PR's "Supabase Preview" check is green (not skipped), that /health returns ok, and that the preview renders the app rather than the "failed to start / missing Supabase config" text — if any fail, route me to step 6's ✗ remedy (fix the connection, then push any commit to the PR branch to retrigger env sync) — exercises the happy AND unhappy paths, and returns a plain-English what-to-click / what-should-happen / what-means-broken. Read-only. Open a PR into main.
 ```
 
 **/revert — undo safely:**
@@ -603,9 +601,8 @@ New routine**, pick this repo, set it **monthly**, and paste:
 
 ```text
 Re-verify each item below against the platforms' CURRENT official documentation, then check this repo's code for the workaround:
-1. Close/reopen-the-PR to retrigger env sync — retirable when the integration syncs on push or branch creation, not only at PR-open.
-2. Auth-seed SQL + signUp() fallback — retirable when Admin API user creation works on Supabase preview branches.
-3. The SessionStart hook loading the committed MEMORY.md — retirable when Claude Code's auto memory syncs across cloud environments.
+1. Auth-seed SQL + signUp() fallback — retirable when Admin API user creation works on Supabase preview branches.
+2. The SessionStart hook loading the committed MEMORY.md — retirable when Claude Code's auto memory syncs across cloud environments.
 If — and only if — an item's retire condition is met, open ONE PR into main removing that workaround and every part of the repo depending on it. ALWAYS end with a dated report: per item, STILL NEEDED or RETIRABLE, plus the documentation URL you read and the sentence that decides it. Never touch main directly.
 ```
 

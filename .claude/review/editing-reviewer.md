@@ -1,18 +1,31 @@
 # editing-reviewer verdict — 2026-06-25
 
-**Status:** PASS
+**Status:** PASS (CONCERN raised, resolved before commit)
 
-**Scope:** Arrow-rule fix in constitution block of `docs/<framework>/02-set-it-up.md`
-across all 4 framework copies; `MEMORY.md` update closing two currency items.
+**Scope:** Prefix retirement + close/reopen retirement across all 4 framework copies
+(vite, next, astro, sveltekit); new step 5.7 in each; workaround rows removed;
+MEMORY.md updated; three earlier arrow-rule fixes included.
 
-**Checks:**
+**Initial CONCERN:**
+`docs/vite/02-set-it-up.md:577` — `/verify` skill still referenced "close and reopen
+the PR"; all other three copies (Next, Astro, SvelteKit) correctly said "push any commit
+to the PR branch to retrigger env sync."
 
-- Arrows connect only literal on-screen labels — the three rewritten bullets now use
-  full sentences with verbs; no `→` chains remain in the constitution block — PASS.
-- Numbered actions first, then one italic *note* — unchanged sections unaffected — PASS.
-- Strictly linear — no forward references introduced — PASS.
-- Prompts inline under paste lines — unchanged — PASS.
-- No-CLI / minimize-workload floor — MEMORY.md changes are internal working memory,
-  not guide content; no human action required — PASS.
+**Resolution:** Vite's `/verify` skill updated to match the other three copies — now
+reads "push any commit to the PR branch to retrigger env sync."
+
+**Post-fix checks:**
+- Arrows (→) connect only literal on-screen labels — step 5.7 in each copy uses only
+  on-screen label names (Manage, Prefix, Save); step 6 ✗ dash construction correct — PASS.
+- Numbered actions first, then one italic *note* — step 5.7 is a numbered step with note
+  below — PASS.
+- Strictly linear — step 5.7 references only step 5.6 (earlier); step 6 references step
+  5.7 (earlier) — PASS.
+- Prompts inline under paste lines — all scaffold/routine/audit prompts sit directly under
+  their paste line — PASS.
+- No-CLI / minimize-workload floor — step 5.7 is a dashboard click; no terminal use
+  required of the human — PASS.
+- Shared content byte-identical — step 6 ✗ and /verify skill now consistent across all
+  four copies — PASS.
 
 **Verdict:** PASS.

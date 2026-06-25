@@ -1,17 +1,33 @@
 # consistency-reviewer verdict — 2026-06-25
 
-**Status:** PASS
+**Status:** PASS (CONCERNs raised, resolved before commit)
 
-**Scope:** Three bullet rewrites in constitution block of `docs/<framework>/02-set-it-up.md`
-(Memory "Cycle", "Worked/failed"; Your place "Flow") across all 4 framework copies.
+**Scope:** Prefix retirement + close/reopen retirement across all 4 framework copies;
+new step 5.7 per framework; workaround rows removed; MEMORY.md updated.
 
-**Byte-identity check:** diff vite vs next vs astro vs sveltekit at the changed lines —
-all four copies are byte-identical at the rewritten bullets — PASS.
+**Initial CONCERNs:**
+1. `docs/vite/02-set-it-up.md:304-306` — step 6 ✗ had "**push any commit**" (bolded)
+   and "the preview redeploys automatically after syncing"; other three copies had unbolded
+   "push any commit" and "after syncing, the integration redeploys the preview itself."
+2. `docs/vite/02-set-it-up.md:577` — `/verify` skill said "close and reopen the PR";
+   other three copies said "push any commit to the PR branch to retrigger env sync."
 
-**Structural parallelism:** step numbers, section headings, filenames, and anchors
-unchanged across copies — PASS.
+**Resolution:** Both items fixed in `docs/vite/02-set-it-up.md` to match the other copies.
 
-**Connected-line principle:** the constitution block is framework-neutral; no
-framework-specific pipe was touched; `MEMORY.md` is repo-scope — PASS.
+**Post-fix checks:**
+- Step 5.7 framework-specific prefixes: Vite → VITE_, Astro/SvelteKit → PUBLIC_,
+  Next.js → absent (correct, native prefix already matches) — PASS.
+- Step 5 note: Vite/Astro/SvelteKit say "redo steps 5.6–5.7 and steps 6.5–6.6";
+  Next says "redo step 5.6 and steps 6.5–6.6" — correct per-framework delta — PASS.
+- Step 6 ✓: all 4 copies say "created at PR-open or on push" — PASS.
+- Step 6 ✗: all 4 copies now byte-identical — PASS.
+- /verify skill remedy: all 4 copies now byte-identical — PASS.
+- Workaround table: all 4 copies have identical 3 rows (auth-seed, SessionStart,
+  cdn.playwright.dev) — PASS.
+- Routine prompts: all 4 copies have identical 2 items (auth-seed + SessionStart) — PASS.
+- Decision-log env-seam bullets and verified-pass paragraphs: parallel across all 4
+  copies with correct framework-specific prefix names — PASS.
+- 06 env-name contract: each copy references its own framework-native prefix (VITE_ for
+  Vite, NEXT_PUBLIC_ for Next, PUBLIC_ for Astro/SvelteKit) — PASS.
 
 **Verdict:** PASS.

@@ -17,19 +17,21 @@ start of every task, and record decisions, root causes, and gotchas as you go.
   this is rejected no matter how good otherwise.
 
 ## Per-framework env wiring (the only real delta)
-- The Supabase→Vercel integration injects fixed `NEXT_PUBLIC_SUPABASE_URL` /
-  `NEXT_PUBLIC_SUPABASE_ANON_KEY` into each preview; production names are set by
-  hand. So the client must read both.
-  - **Vite**: native `VITE_`; bridge previews via `envPrefix: ['VITE_','NEXT_PUBLIC_']`,
-    read `VITE_ ?? NEXT_PUBLIC_`.
-  - **Next.js**: native `NEXT_PUBLIC_` — production AND preview share these names, so
-    NO fallback and NO envPrefix; the Vite workaround does not exist here.
-  - **Astro**: native `PUBLIC_`; the SERVER (middleware) resolves `PUBLIC_ ?? NEXT_PUBLIC_`
-    from `process.env` and passes public values to islands — NO `vite.envPrefix` (that
-    override has a known Astro breakage, issue #10406).
-  - **SvelteKit**: native `PUBLIC_`, but its public `$env` takes one prefix — resolve
-    `PUBLIC_ ?? NEXT_PUBLIC_` on the SERVER (hooks.server.ts) and pass the values to
-    the browser via the root layout load.
+- The Supabase→Vercel integration's per-connection prefix is configurable (Supabase →
+  Project → Settings → Integrations → Vercel → Manage → Customize prefix — step 5.7).
+  Set it to the framework's native prefix; production and preview then share the same names,
+  and no cross-prefix fallback is needed.
+  - **Vite**: native `VITE_`; step 5.7 sets integration prefix to `VITE_`; `envPrefix:
+    ['VITE_']`; read `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY ?? VITE_SUPABASE_ANON_KEY`; no fallback.
+  - **Next.js**: native `NEXT_PUBLIC_` — the integration default already matches; no
+    change to prefix needed; NO fallback and NO envPrefix.
+  - **Astro**: native `PUBLIC_`; step 5.7 sets integration prefix to `PUBLIC_`; SERVER
+    (middleware) reads `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+    PUBLIC_SUPABASE_ANON_KEY` from `process.env`; passes public values to islands —
+    NO `vite.envPrefix` (that override has a known Astro breakage, issue #10406).
+  - **SvelteKit**: native `PUBLIC_`; step 5.7 sets integration prefix to `PUBLIC_`;
+    SERVER (hooks.server.ts) reads `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+    PUBLIC_SUPABASE_ANON_KEY` from `process.env`; passes values via root layout load.
 
 ## Quality gate (never skip)
 - Verify every platform claim against CURRENT official docs before changing it; carry
@@ -52,11 +54,12 @@ start of every task, and record decisions, root causes, and gotchas as you go.
   *(field, Jun 2026; user Vercel dashboard — official marketplace docs list only ANON_KEY,
   so actual injection exceeds the documented list)*. The `…PUBLISHABLE_KEY ?? …ANON_KEY`
   fallback chain covers both; issue #38984 remains open but resolved in practice.
-- **Verified Jun 2026 — prefix IS configurable:** Supabase dashboard → Project → Settings →
-  Integrations lets you change the `NEXT_PUBLIC_*` prefix per framework *(docs + field,
-  Jun 2026; supabase/supabase PR #28058 merged Jul 2024 + vercel.com/marketplace/supabase
-  Jun 2026)*. The Vite workaround's "Retire when…" condition in `06-keeping-it-current.md`
-  is now met — follow-up PR needed to add the configuration step and retire the bridge.
+- **Verified Jun 2026 — prefix IS configurable and bridges are retired:** Supabase dashboard
+  → Project → Settings → Integrations → Vercel → Manage → Customize prefix — field-verified
+  Jun 2026; supabase/supabase PR #28058 merged Jul 2024. Step 5.7 added to all framework
+  copies (Vite → `VITE_`, Astro → `PUBLIC_`, SvelteKit → `PUBLIC_`, Next.js — no change
+  needed). The `NEXT_PUBLIC_` prefix bridge workarounds (fallback chains in Vite/Astro/
+  SvelteKit, close/reopen ✗ instruction in all 4) retired in this PR across all copies.
 - **Arrow-rule fix Jun 2026:** three `→`-chained bullets in the constitution block of
   `02-set-it-up.md` (Memory "Cycle", "Worked/failed"; Your place "Flow") rewritten as full
   sentences across all 4 framework copies.
