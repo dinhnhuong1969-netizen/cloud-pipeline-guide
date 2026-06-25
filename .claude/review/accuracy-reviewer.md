@@ -25,4 +25,6 @@ consistent with the documented behavior and the other three copies.
   Manage → Prefix → Save" — field-verified Jun 2026 per MEMORY.md:57-59 — PASS.
 - MEMORY.md per-framework wiring section updated with canonical stamps — PASS.
 
+**Amendment (same PR):** Step 8.2 "Dependabot on self-hosted runners" warning — claim: "if it is ON with no self-hosted runners, Dependabot jobs queue indefinitely and never run" — confirmed by the user's own observation (their edu repo had this ON and Dependabot was silently broken); matches GitHub's documented behavior that Dependabot jobs routed to self-hosted runners require a self-hosted runner to be available — PASS.
+
 **Verdict:** PASS.

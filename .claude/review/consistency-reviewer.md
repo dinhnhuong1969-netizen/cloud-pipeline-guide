@@ -30,4 +30,6 @@ new step 6.7 in Vite/Astro/SvelteKit; workaround rows removed; MEMORY.md updated
 - 06 env-name contract: each copy references its own framework-native prefix (VITE_ for
   Vite, NEXT_PUBLIC_ for Next, PUBLIC_ for Astro/SvelteKit) — PASS.
 
+**Amendment (same PR):** Step 8.2 "Dependabot on self-hosted runners" warning — byte-identical text added to all 4 copies at the same paragraph position — PASS.
+
 **Verdict:** PASS.

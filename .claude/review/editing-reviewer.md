@@ -28,4 +28,6 @@ reads "push any commit to the PR branch to retrigger env sync."
 - Shared content byte-identical — step 6 ✗ and /verify skill now consistent across all
   four copies — PASS.
 
+**Amendment (same PR):** Step 8.2 "Dependabot on self-hosted runners" warning added to all 4 copies — inline continuation of the same numbered-step sentence (not a separate bullet), no arrow rule or order violation, no CLI requirement, byte-identical across all 4 copies — PASS.
+
 **Verdict:** PASS.

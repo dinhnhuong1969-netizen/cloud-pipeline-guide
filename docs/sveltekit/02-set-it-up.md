@@ -365,7 +365,9 @@ Create .github/workflows/ci.yml: on every pull_request AND on push to main, thre
 2. In GitHub **Settings → General**, make sure **"Automatically delete head
    branches" is OFF** and enable **"Allow auto-merge"**; then in **Settings →
    Advanced Security**, turn **Dependabot security updates ON** (CVE patches
-   arrive as PRs through the normal gate, not just weekly version bumps). Paste
+   arrive as PRs through the normal gate, not just weekly version bumps). Also
+   confirm **"Dependabot on self-hosted runners" is OFF** — if it is ON with no
+   self-hosted runners, Dependabot jobs queue indefinitely and never run. Paste
    this so Dependabot patch updates merge automatically once CI is green:
 
 ```text
