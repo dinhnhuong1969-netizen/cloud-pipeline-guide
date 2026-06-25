@@ -1,22 +1,17 @@
-# consistency-reviewer verdict — 2026-06-22
+# consistency-reviewer verdict — 2026-06-25
 
 **Status:** PASS
 
-**Scope:** Biome + Depot changes across all 4 framework copies (02-set-it-up.md
-and 07-decision-log.md).
+**Scope:** Three bullet rewrites in constitution block of `docs/<framework>/02-set-it-up.md`
+(Memory "Cycle", "Worked/failed"; Your place "Flow") across all 4 framework copies.
 
-**Byte-identity across copies:** PASS — all three shared changes (scaffold Biome
-line, E2E Biome ignore line, Depot upgrade block) are byte-identical across
-vite/next/astro/sveltekit. The two decision log bullet points (Biome, Depot) are
-likewise byte-identical, inserted before each copy's framework-specific delta.
+**Byte-identity check:** diff vite vs next vs astro vs sveltekit at the changed lines —
+all four copies are byte-identical at the rewritten bullets — PASS.
 
-**Structural parallelism:** PASS — step numbers, section headings, filenames
-unchanged; no cross-reference drift.
+**Structural parallelism:** step numbers, section headings, filenames, and anchors
+unchanged across copies — PASS.
 
-**Connected-line principle:**
-- Depot upgrade references ci.yml (step 8.1) and e2e.yml (step 8.6) — earlier.
-- `lint` script name contract unchanged — PASS.
-- No pipe moved alone: scaffold prompt, E2E prompt, and decision log all updated
-  together across all copies.
+**Connected-line principle:** the constitution block is framework-neutral; no
+framework-specific pipe was touched; `MEMORY.md` is repo-scope — PASS.
 
 **Verdict:** PASS.

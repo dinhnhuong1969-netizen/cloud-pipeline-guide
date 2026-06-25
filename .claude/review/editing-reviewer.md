@@ -1,22 +1,18 @@
-# editing-reviewer verdict — 2026-06-22
+# editing-reviewer verdict — 2026-06-25
 
-**Status:** PASS (after correction applied by orchestrator)
+**Status:** PASS
 
-**Scope:** Replace ESLint + Prettier with Biome in the scaffold prompt (step 4)
-and E2E prompt (step 8.6); add Depot CI accelerator as an ↑ Upgrade in step 8;
-add decision log entries for both — all 4 framework copies.
+**Scope:** Arrow-rule fix in constitution block of `docs/<framework>/02-set-it-up.md`
+across all 4 framework copies; `MEMORY.md` update closing two currency items.
 
-**Initial finding (corrected before commit):**
-- Arrow rule violation in Depot upgrade step 1: `→ install the Depot GitHub App`
-  connected a prose instruction, not a literal on-screen label. Fixed to semicolon.
+**Checks:**
 
-**Post-correction check:**
-- Numbered actions first, then one italic *note* — PASS.
-- Arrows connect only literal labels (`→ **Sign up**`) — PASS after correction.
-- Strictly linear — Depot references ci.yml (step 8.1) and e2e.yml (step 8.6),
-  both earlier — PASS.
-- Prompts inline under the paste line — PASS.
-- ↑ Upgrade one prompt away (sign-up comparable to getting an API key) — PASS.
-- No-CLI / minimize-workload floor — all human actions are paste/click — PASS.
+- Arrows connect only literal on-screen labels — the three rewritten bullets now use
+  full sentences with verbs; no `→` chains remain in the constitution block — PASS.
+- Numbered actions first, then one italic *note* — unchanged sections unaffected — PASS.
+- Strictly linear — no forward references introduced — PASS.
+- Prompts inline under paste lines — unchanged — PASS.
+- No-CLI / minimize-workload floor — MEMORY.md changes are internal working memory,
+  not guide content; no human action required — PASS.
 
 **Verdict:** PASS.

@@ -47,18 +47,19 @@ start of every task, and record decisions, root causes, and gotchas as you go.
   (verify-before-asserting), `Simplicity` (code-floor + effort scaling),
   `Your place + every-PR rules` (Action care), `Agents, plugins, MCP` (Skill-first).
   Byte-identical across all 4 framework copies of `docs/<framework>/02-set-it-up.md`.
-- **Open currency items (shared — for a follow-up refresh, affect the merged Vite copy too):**
-  (1) Supabase is renaming `anon`→`sb_publishable_…`; post-Nov-2025 projects lack the
-  legacy anon key, and the Vercel integration's injection of the new name has open bug
-  #38984 — the client's `…PUBLISHABLE_KEY ?? …ANON_KEY` read covers both today.
-  (2) A search snippet suggests the integration's injected prefix may be configurable in
-  the Supabase dashboard (direct doc fetch 403'd) — would retire the bridge workaround, but
-  CONFLICTS with the field-verified "fixed names" claim, so re-verify before acting.
-- **Open editing item (follow-on PR):** pre-existing arrow-rule violations in the
-  constitution block, identical across all 4 framework copies, at
-  `02-set-it-up.md:140` (Memory "Cycle"), `:141` (Memory "Worked/failed"), `:144`
-  (Your place "Flow"). Flagged by editing-reviewer Jun 2026 as CONCERN, out of
-  scope of the meta-behavior-layer PR; rewrite as full sentences with verbs.
+- **Verified Jun 2026 — integration injects both key names:** the External Connection
+  auto-injects both `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  *(field, Jun 2026; user Vercel dashboard — official marketplace docs list only ANON_KEY,
+  so actual injection exceeds the documented list)*. The `…PUBLISHABLE_KEY ?? …ANON_KEY`
+  fallback chain covers both; issue #38984 remains open but resolved in practice.
+- **Verified Jun 2026 — prefix IS configurable:** Supabase dashboard → Project → Settings →
+  Integrations lets you change the `NEXT_PUBLIC_*` prefix per framework *(docs + field,
+  Jun 2026; supabase/supabase PR #28058 merged Jul 2024 + vercel.com/marketplace/supabase
+  Jun 2026)*. The Vite workaround's "Retire when…" condition in `06-keeping-it-current.md`
+  is now met — follow-up PR needed to add the configuration step and retire the bridge.
+- **Arrow-rule fix Jun 2026:** three `→`-chained bullets in the constitution block of
+  `02-set-it-up.md` (Memory "Cycle", "Worked/failed"; Your place "Flow") rewritten as full
+  sentences across all 4 framework copies.
 - **"Renaming the project" section added Jun 2026** to all 4 `docs/<framework>/06-keeping-it-current.md`
   copies (byte-identical, framework-neutral). Verified: GitHub redirects break if old
   name reused (docs); Supabase branch sync breaks until reconnected via Organization →

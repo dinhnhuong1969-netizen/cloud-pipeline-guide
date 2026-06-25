@@ -1,16 +1,19 @@
-# Guide: dependabot auto-merge + Claude Code PR settings (all 4 frameworks)
+# Arrow-rule fix + close two open currency items (all 4 frameworks)
 
-Adds two self-operating improvements to the guide's setup flow — Dependabot patch updates now merge themselves once CI passes, and Claude Code can open and auto-fix its own PRs — both documented across all four framework copies in one pass.
+Three bullets in the app-`CLAUDE.md` constitution block violated the guide's own arrow rule (arrows connect only literal on-screen labels). They are rewritten as full sentences, byte-identical across all 4 framework copies. Two open items in `MEMORY.md` are closed with verified stamps.
 
 ## What changed
 
-- **Step 2.6** (all 4 frameworks): Documents the Claude Code **Automatically create PR** and **Auto-fix PR** settings so readers enable them at first connect — Claude then opens and monitors PRs without a second prompt.
-- **Step 8.2** (all 4 frameworks): Extended to include an "Allow auto-merge" click in GitHub Settings → General and a paste prompt that creates `.github/workflows/dependabot-auto-merge.yml`; patch-level Dependabot PRs now self-merge once CI is green.
-- **Step 9.7** (all 4 frameworks): Adds Dependabot to the ruleset bypass list (Integration · Pull requests only) so the auto-merge workflow can skip the approval gate — CI still runs and must pass.
-- **Step 9 Note** (all 4 frameworks): Adds a sentence clarifying that the bypass waives only the approval requirement, not CI.
-- **Step 12.1 audit prompt** (all 4 frameworks): Adds `dependabot-auto-merge.yml` to the manifest the audit prompt checks.
-- **Step 12.4** (all 4 frameworks): Updates "two clicks" → "three clicks" to reflect the new Allow auto-merge click added at step 8.2.
-- **`.claude/review/`**: Three reviewer verdicts written for this PR (security ✅, scale ✅, code ✅).
+- **`docs/<fw>/02-set-it-up.md`** (all 4 copies): three `→`-chained bullets in the
+  constitution block (Memory "Cycle", "Worked/failed"; Your place "Flow") rewritten
+  as full sentences — byte-identical across vite/next/astro/sveltekit.
+- **`MEMORY.md`**: closed two open currency items with canonical `*(field, …)*` and
+  `*(docs + field, …)*` stamps: (1) integration injects both PUBLISHABLE_KEY and
+  ANON_KEY (field-only; official docs list only ANON_KEY); (2) prefix IS configurable
+  via Supabase Settings → Integrations (docs + field; sources: supabase/supabase
+  PR #28058 + vercel.com/marketplace/supabase Jun 2026). The Vite bridge's
+  "Retire when…" condition is now met — a follow-up PR will retire it.
+- **`.claude/review/`**: three reviewer verdicts refreshed for this PR.
 
 ## Gate
 
@@ -22,6 +25,6 @@ Adds two self-operating improvements to the guide's setup flow — Dependabot pa
 - [x] One PR, with a plain-English "what changed / how to undo" for the human.
 
 ## For you
-**What changed:** All four framework copies of `docs/<fw>/02-set-it-up.md` now teach readers to enable Claude Code's auto-PR/auto-fix settings (step 2.6) and to paste the Dependabot auto-merge workflow (step 8.2), with the matching ruleset bypass (step 9.7) and audit manifest entry (step 12.1) updated to match.
-**What you do next:** Review the diff, then merge into `main` — no manual dashboard steps needed for the guide repo itself.
-**How to roll it back:** Revert this PR; the four `02-set-it-up.md` files return to their pre-PR state and the `.claude/review/` files are removed.
+**What changed:** Three arrow-violating bullets in the pasted `CLAUDE.md` constitution block are rewritten as full sentences across all 4 framework copies; two long-open MEMORY.md items are closed with canonical verification stamps.
+**What you do next:** Review the diff, then merge into `main` — no dashboard steps needed. Note: a follow-up PR is needed to retire the Vite `envPrefix` bridge now that the Supabase prefix-configurability "Retire when…" condition is confirmed met.
+**How to roll it back:** Revert this PR; all four `02-set-it-up.md` files and `MEMORY.md` return to their pre-PR state.
