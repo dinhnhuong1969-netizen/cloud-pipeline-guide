@@ -286,7 +286,9 @@ wasn't empty — make a fresh one.
    when the PR closes.
 
 *Note:* production values are scoped to **Production only** and carry the `VITE_`
-names you typed. Each PR's preview gets its **own** values from the integration
+names you typed; the integration also injects into production, but with the
+`NEXT_PUBLIC_` prefix until step 6.7 changes it — that ordering is why step 6.2
+sets them by hand (production works immediately, no gap). Each PR's preview gets its **own** values from the integration
 when a PR opens or a commit is pushed, injected under the same `VITE_` names
 (step 6.7 set the prefix) — the client reads one set of names in all environments,
 so nothing needs configuring on either dashboard. Two health signs on any open PR:
