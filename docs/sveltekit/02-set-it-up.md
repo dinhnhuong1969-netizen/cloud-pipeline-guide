@@ -218,7 +218,7 @@ Scaffold a MINIMAL SvelteKit + TypeScript app (with @sveltejs/adapter-vercel) th
 - Run `npx supabase init` for config.toml (do NOT hand-write it). Leave the top-level project_id at its default (the folder name — NOT the remote ref). Set [db.seed] enabled=true, sql_paths=["./seed.sql"].
 - supabase/migrations/<UTC>_init.sql that only enables pgcrypto; supabase/seed.sql empty except a comment. (Auth users, storage buckets, and tables come later, when you build those features.)
 - Biome (single binary replacing ESLint and Prettier; `biome.json` at the root; `lint` script is `biome check .`) + strict TypeScript + Vitest with one passing test. package.json scripts named exactly `lint`, `typecheck`, and `test` (the step 8 `tests` CI job runs `npm test`).
-- A committed package-lock.json; .github/dependabot.yml (weekly npm + github-actions, grouped; omit the runs-on field — Dependabot uses GitHub-hosted runners by default); .env.example with the PUBLIC_SUPABASE_* vars; .gitignore ignoring .env*.
+- A committed package-lock.json; .github/dependabot.yml (weekly npm + github-actions, grouped; no runner field — Dependabot uses GitHub-hosted runners unless the "Dependabot on self-hosted runners" setting is ON); .env.example with the PUBLIC_SUPABASE_* vars; .gitignore ignoring .env*.
 - A short CLAUDE.md in src/ (one line: components render, services validate — see the root CLAUDE.md folders rule) and in supabase/ (one line: migrations are append-only and UTC-named — see the root migrations rule). Nothing more — they grow via the memory cycle.
 Open a PR into main.
 ```
@@ -232,8 +232,8 @@ one-time bootstrap (templated projects from step 12 skip this: their gate is up
 from the first minute).
 
 ## 5. Set up Supabase
-1. supabase.com → **New project**; **choose your GitHub repo when prompted**; save
-   the **database password**; pick the nearest region.
+1. supabase.com → **New project**; save the **database password** (you won't see it
+   again); pick the nearest region.
 2. Make sure it's a **brand-new, empty project**.
 3. Upgrade to **Pro** (Settings → Billing).
 4. On the project **home page**, click **Copy ⌄** next to the URL; copy the

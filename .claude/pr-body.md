@@ -35,6 +35,16 @@ so the "close and reopen the PR" workaround is also retired.
   PR and the audit prompt was still describing the old scaffold.
 - **Step 12.4 (all 4 copies)**: "three clicks" updated to "settings" with self-hosted
   runners OFF added to the parenthetical — now consistent with the expanded step 8.2.
+- **Step 4 scaffold prompt `runs-on` fix (all 4 copies)**: previous text said "omit the
+  runs-on field" implying `runs-on` is a valid `dependabot.yml` option — it is not;
+  `runs-on` belongs to GitHub Actions workflow syntax, not the Dependabot config schema
+  *(docs, Jun 2026)*. Replaced with "no runner field — Dependabot uses GitHub-hosted
+  runners unless the 'Dependabot on self-hosted runners' setting is ON."
+- **Step 5.1 GitHub-repo-prompt removal (all 4 copies)**: "choose your GitHub repo when
+  prompted" described a wizard prompt that does not exist in the Supabase New Project flow
+  *(docs, Jun 2026)*; GitHub repo connection happens separately in step 5.6. Removed the
+  false instruction; added "(you won't see it again)" to the password note — the only
+  irreversible action in the step.
 - **`.claude/review/`**: three reviewer verdicts refreshed for this PR.
 
 ## Self-check
@@ -51,6 +61,6 @@ so the "close and reopen the PR" workaround is also retired.
 - [x] every subagent dispatched on a model below the orchestrator's — never inherited
 
 ## For you
-**What changed:** Step 6.7 added to Vite/Astro/SvelteKit to set the Supabase→Vercel integration prefix after the connection exists (step 6.5); cross-prefix fallback chains and "close and reopen the PR" instruction retired from all 4 copies; step 8.2 in all 4 copies now explicitly warns that "Dependabot on self-hosted runners" must be OFF or all Dependabot jobs queue forever and never run.
+**What changed:** Step 6.7 added to Vite/Astro/SvelteKit to set the Supabase→Vercel integration prefix after the connection exists (step 6.5); cross-prefix fallback chains and "close and reopen the PR" instruction retired from all 4 copies; step 8.2 in all 4 copies now explicitly warns that "Dependabot on self-hosted runners" must be OFF; step 4 scaffold prompt corrected (`runs-on` is not a valid `dependabot.yml` field); step 5.1 corrected (Supabase does not prompt for GitHub repo during New Project creation — that's step 5.6).
 **What you do next:** Review the diff, then merge into `main`. In your own Supabase project, go to Settings → Integrations → Vercel → Manage and set Prefix to `VITE_` (since Dinh-Ngoc-Edu is a Vite app); after that, remove the `NEXT_PUBLIC_` fallback chain from `supabaseClient.ts` and `vite.config.ts` in a separate PR into that repo.
 **How to roll it back:** Revert this PR; all 4 copies of `01`, `02`, `06`, `07`, plus `MEMORY.md`, return to their pre-PR state.

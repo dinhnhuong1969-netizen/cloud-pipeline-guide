@@ -34,4 +34,8 @@ reads "push any commit to the PR branch to retrigger env sync."
 - Vite step 12 audit prompt: "two-prefix fallback chain" → "single-prefix VITE_ supabaseClient" — removes a now-stale description; no editing-rule violation.
 - Step 12.4 all 4 copies: "three clicks" → "settings" with the self-hosted runners item added — consistent with expanded step 8.2; byte-identical across all 4 copies — PASS.
 
+**Amendment 3 (same PR — agent verification finds):**
+- Step 4 scaffold prompt `runs-on` fix (all 4 copies): wording change only; "no runner field" is plain English, no arrow-rule or order violation, no CLI requirement — PASS.
+- Step 5.1 GitHub-repo-prompt removal (all 4 copies): removes a false instruction that would block a newcomer; "(you won't see it again)" is a plain-English urgency note, not an arrow-chain; no editing-rule violation — PASS.
+
 **Verdict:** PASS.

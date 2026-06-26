@@ -31,4 +31,8 @@ consistent with the documented behavior and the other three copies.
 - Vite step 12 audit prompt: "single-prefix VITE_ supabaseClient (VITE_SUPABASE_URL, VITE_SUPABASE_PUBLISHABLE_KEY)" — accurately describes what the step 4 scaffold creates after prefix retirement; no unverifiable platform claim — PASS.
 - Step 12.4: enumerating "self-hosted runners OFF" in the parenthetical — consistent with the step 8.2 setting now documented — PASS.
 
+**Amendment 3 (same PR — agent verification finds):**
+- Step 4 scaffold prompt `runs-on` wording (all 4 copies): previous text said "omit the runs-on field — Dependabot uses GitHub-hosted runners by default" implying `runs-on` is a valid `dependabot.yml` option. Confirmed against GitHub's official Dependabot configuration options reference *(docs, Jun 2026)*: `runs-on` does not exist in the `dependabot.yml` schema. Fixed to "no runner field — Dependabot uses GitHub-hosted runners unless the 'Dependabot on self-hosted runners' setting is ON" — PASS.
+- Step 5.1 "choose your GitHub repo when prompted" (all 4 copies): claim that Supabase New Project wizard prompts for GitHub repo selection. Confirmed against current Supabase documentation *(docs, Jun 2026)*: GitHub repo connection is a separate step (step 5.6, Organization → Integrations → GitHub Connections) and is never prompted during project creation. Text removed; password urgency note "(you won't see it again)" added — PASS.
+
 **Verdict:** PASS.

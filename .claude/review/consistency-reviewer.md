@@ -36,4 +36,8 @@ new step 6.7 in Vite/Astro/SvelteKit; workaround rows removed; MEMORY.md updated
 - Vite step 12 audit prompt only: "two-prefix fallback chain" → "single-prefix VITE_ supabaseClient" — framework-specific change (each copy describes its own scaffold); other 3 copies unchanged (they already described their framework-native prefix correctly).
 - Step 12.4 "three clicks" → "settings" with self-hosted runners: byte-identical across all 4 copies — PASS.
 
+**Amendment 3 (same PR — agent verification finds):**
+- Step 4 scaffold prompt `runs-on` fix: byte-identical new wording ("no runner field — Dependabot uses GitHub-hosted runners unless the 'Dependabot on self-hosted runners' setting is ON") across all 4 copies — PASS.
+- Step 5.1 GitHub-repo-prompt removal: byte-identical across all 4 copies; password urgency note "(you won't see it again)" added identically in all 4 copies — PASS.
+
 **Verdict:** PASS.
